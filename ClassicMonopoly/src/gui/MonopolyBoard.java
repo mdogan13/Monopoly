@@ -69,7 +69,7 @@ public class MonopolyBoard {
 	 
 	 JPanel panel_1 = new JPanel();
 	 panel_1.setBackground(Color.LIGHT_GRAY);
-	 panel_1.setBounds(974, 50, 685, 946);
+	 panel_1.setBounds(974, 50, 695, 946);
 	 frame.getContentPane().add(panel_1);
 
 	
