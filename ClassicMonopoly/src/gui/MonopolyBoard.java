@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class MonopolyBoard {
 
@@ -45,6 +46,7 @@ public class MonopolyBoard {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 1920, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -64,6 +66,11 @@ public class MonopolyBoard {
 		 frame.getContentPane().add(lblSdfdsfdssfd);
 		 frame.getContentPane().add(lblSdfdsfdssfd);
 	 lblSdfdsfdssfd.setIcon(scaledicon);
+	 
+	 JPanel panel_1 = new JPanel();
+	 panel_1.setBackground(Color.LIGHT_GRAY);
+	 panel_1.setBounds(1052, 50, 807, 946);
+	 frame.getContentPane().add(panel_1);
 
 	
 	}
