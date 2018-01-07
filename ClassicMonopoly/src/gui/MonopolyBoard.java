@@ -13,10 +13,12 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.CardLayout;
 
 public class MonopolyBoard {
 
-	private JFrame frame;
+	private JFrame mainFrame;
+	private final JPanel panel = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -26,7 +28,7 @@ public class MonopolyBoard {
 			public void run() {
 				try {
 					MonopolyBoard window = new MonopolyBoard();
-					window.frame.setVisible(true);
+					window.mainFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,36 +44,39 @@ public class MonopolyBoard {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the mainFrame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.DARK_GRAY);
-		frame.setBounds(100, 100, 1920, 1080);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-	
-		
-		JLabel lblSdfdsfdssfd = new JLabel();
-		lblSdfdsfdssfd.setText("sdfdsfdssfd");
-		 lblSdfdsfdssfd.setBounds(12, 50,950,946);
-		
-		ImageIcon bigicon=new ImageIcon(MonopolyBoard.class.getResource("/resource/monopoly-board-web.jpg"));
-		Image bigpic=bigicon.getImage();
-		Image newpic=bigpic.getScaledInstance(lblSdfdsfdssfd.getWidth(), lblSdfdsfdssfd.getHeight(),Image.SCALE_SMOOTH);
-		ImageIcon scaledicon=new ImageIcon(newpic);
-		 frame.getContentPane().setLayout(null);
-	
-		 frame.getContentPane().add(lblSdfdsfdssfd);
-		 frame.getContentPane().add(lblSdfdsfdssfd);
-	 lblSdfdsfdssfd.setIcon(scaledicon);
-	 
-	 JPanel panel_1 = new JPanel();
-	 panel_1.setBackground(Color.LIGHT_GRAY);
-	 panel_1.setBounds(974, 50, 695, 946);
-	 frame.getContentPane().add(panel_1);
+		mainFrame = new JFrame();
+		mainFrame.getContentPane().setBackground(Color.BLACK);
+		mainFrame.setBounds(100, 100, 1699, 1080);
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	
+		JLabel boardLabel = new JLabel();
+		boardLabel.setBounds(0, 0, 950, 946);
+
+		ImageIcon bigicon = new ImageIcon(MonopolyBoard.class.getResource("/resource/monopoly-board-web.jpg"));
+		Image bigpic = bigicon.getImage();
+		Image newpic = bigpic.getScaledInstance(boardLabel.getWidth(), boardLabel.getHeight(),
+				Image.SCALE_SMOOTH);
+		ImageIcon scaledicon = new ImageIcon(newpic);
+		mainFrame.getContentPane().setLayout(null);
+
+		boardLabel.setIcon(scaledicon);
+
+		JPanel controlPanel = new JPanel();
+		controlPanel.setBounds(962, 0, 695, 946);
+		controlPanel.setBackground(Color.DARK_GRAY);
+
+		JPanel gamePanel = new JPanel();
+		gamePanel.setBackground(Color.BLACK);
+		gamePanel.setBounds(12, 13, 1658, 947);
+		mainFrame.getContentPane().add(gamePanel);
+		gamePanel.setLayout(null);
+		gamePanel.add(boardLabel);
+		gamePanel.add(controlPanel);
+		panel.setBounds(-10009, -10038, 1681, 1033);
+		mainFrame.getContentPane().add(panel);
 	}
 }
