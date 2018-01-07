@@ -55,7 +55,7 @@ public class MonopolyBoard {
 		
 		JLabel lblSdfdsfdssfd = new JLabel();
 		lblSdfdsfdssfd.setText("sdfdsfdssfd");
-		 lblSdfdsfdssfd.setBounds(50, 50,950,946);
+		 lblSdfdsfdssfd.setBounds(23, 50,950,946);
 		
 		ImageIcon bigicon=new ImageIcon(MonopolyBoard.class.getResource("/resource/monopoly-board-web.jpg"));
 		Image bigpic=bigicon.getImage();
@@ -69,7 +69,7 @@ public class MonopolyBoard {
 	 
 	 JPanel panel_1 = new JPanel();
 	 panel_1.setBackground(Color.LIGHT_GRAY);
-	 panel_1.setBounds(1052, 50, 714, 946);
+	 panel_1.setBounds(985, 50, 685, 946);
 	 frame.getContentPane().add(panel_1);
 
 	
