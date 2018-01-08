@@ -39,10 +39,10 @@ public class GameSetupScreen extends JDialog {
 	private JTextField p3nameField;
 	private JTextField p4nameField;
 
-	JComboBox<String> p1tokenBox;
-	JComboBox<String> p2tokenBox;
-	JComboBox<String> p3tokenBox;
-	JComboBox<String> p4tokenBox;
+	JComboBox p1tokenBox;
+	JComboBox p2tokenBox;
+	JComboBox p3tokenBox;
+	JComboBox p4tokenBox;
 
 	JButton okButton;
 	JButton cancelButton;
@@ -69,11 +69,11 @@ public class GameSetupScreen extends JDialog {
 		contentPanel.setLayout(null);
 
 		JLabel playerNumLabel = new JLabel("How many players?");
-		playerNumLabel.setBounds(202, 35, 111, 16);
+		playerNumLabel.setBounds(161, 35, 111, 16);
 		contentPanel.add(playerNumLabel);
 
-		playerNumCombobox = new JComboBox<String>(playerNumOptions);
-		playerNumCombobox.setBounds(318, 32, 72, 22);
+		playerNumCombobox = new JComboBox(playerNumOptions);
+		playerNumCombobox.setBounds(302, 32, 142, 22);
 		contentPanel.add(playerNumCombobox);
 
 		initialize();
@@ -248,11 +248,11 @@ public class GameSetupScreen extends JDialog {
 		p1nameField.setColumns(10);
 
 		JLabel p1tokenLabel = new JLabel("Select Token:");
-		p1tokenLabel.setBounds(269, 0, 89, 16);
+		p1tokenLabel.setBounds(251, 0, 89, 16);
 		player1Panel.add(p1tokenLabel);
 
-		p1tokenBox = new JComboBox<String>(tokenOptions);
-		p1tokenBox.setBounds(355, 0, 73, 22);
+		p1tokenBox = new JComboBox(tokenOptions);
+		p1tokenBox.setBounds(339, 0, 89, 22);
 		player1Panel.add(p1tokenBox);
 		// -------------------------------------------------------------------------------
 		player2Panel = new JPanel();
@@ -270,11 +270,11 @@ public class GameSetupScreen extends JDialog {
 		p2nameField.setColumns(10);
 
 		JLabel p2tokenLabel = new JLabel("Select Token:");
-		p2tokenLabel.setBounds(269, 0, 89, 16);
+		p2tokenLabel.setBounds(251, 0, 89, 16);
 		player2Panel.add(p2tokenLabel);
 
-		p2tokenBox = new JComboBox<String>(tokenOptions);
-		p2tokenBox.setBounds(355, 0, 73, 22);
+		p2tokenBox = new JComboBox(tokenOptions);
+		p2tokenBox.setBounds(339, 0, 89, 22);
 		player2Panel.add(p2tokenBox);
 		// ------------------------------------------------------------------------------------
 		player3Panel = new JPanel();
@@ -292,11 +292,11 @@ public class GameSetupScreen extends JDialog {
 		p3nameField.setColumns(10);
 
 		JLabel p3tokenLabel = new JLabel("Select Token:");
-		p3tokenLabel.setBounds(269, 0, 89, 16);
+		p3tokenLabel.setBounds(251, 0, 89, 16);
 		player3Panel.add(p3tokenLabel);
 
-		p3tokenBox = new JComboBox<String>(tokenOptions);
-		p3tokenBox.setBounds(355, 0, 73, 22);
+		p3tokenBox = new JComboBox(tokenOptions);
+		p3tokenBox.setBounds(339, 0, 89, 22);
 		player3Panel.add(p3tokenBox);
 		// --------------------------------------------------------------------------------
 		player4Panel = new JPanel();
@@ -314,11 +314,11 @@ public class GameSetupScreen extends JDialog {
 		p4nameField.setColumns(10);
 
 		JLabel p4tokenLabel = new JLabel("Select Token:");
-		p4tokenLabel.setBounds(269, 0, 89, 16);
+		p4tokenLabel.setBounds(251, 0, 89, 16);
 		player4Panel.add(p4tokenLabel);
 
-		p4tokenBox = new JComboBox<String>(tokenOptions);
-		p4tokenBox.setBounds(355, 0, 73, 22);
+		p4tokenBox = new JComboBox(tokenOptions);
+		p4tokenBox.setBounds(339, 0, 89, 22);
 		player4Panel.add(p4tokenBox);
 		// -----------------------------------------------------------------------------------
 
