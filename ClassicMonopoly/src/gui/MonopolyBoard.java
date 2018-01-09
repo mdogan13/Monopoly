@@ -1,13 +1,17 @@
 package gui;
 
 import java.awt.Image;
-
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.GridLayout;
+
 
 
 public class MonopolyBoard {
@@ -15,17 +19,41 @@ public class MonopolyBoard {
 	private JFrame mainFrame;
 	private BoardGrid grid;
 	
+	JPanel gamePanel;
+	JPanel controlPanel;
+	JPanel playersPanel;
+	
+	static JLabel cardInfoLabel ;
+	
 	//tokenlist here!
 	
-	public MonopolyBoard(ImageIcon[] tokenSelections) {
+	public MonopolyBoard(ImageIcon[] tokenSelections, ArrayList<String> playerNames) {
 		initialize();
 		
 		for (int i = 0; i <GameSetupScreen.getNumberOfPlayers(); i++) {
+			PlayerGUI g = new PlayerGUI(playerNames.get(i));
+			URL path;
+			try {
+				path = new URL(tokenSelections[i].getDescription());
+				grid.createAndSetLabelSizedIcon(g.playerIconlbl, path);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			playersPanel.add(g);
+			
 			PlayerToken t= new PlayerToken(tokenSelections[i]);
 			t.gridPosition=0;
 			grid.squarePanels[0].add(t.tokenContainer);
+			
 		}
+	
+		
+	
 	}
+		
+		
 
 	
 	private void initialize() {
@@ -52,11 +80,11 @@ public class MonopolyBoard {
 
 		boardLabel.setIcon(scaledicon);
 
-		JPanel controlPanel = new JPanel();
+		controlPanel = new JPanel();
 		controlPanel.setBounds(962, 0, 695, 946);
 		controlPanel.setBackground(Color.DARK_GRAY);
 
-		JPanel gamePanel = new JPanel();
+		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.BLACK);
 		gamePanel.setBounds(12, 13, 1658, 947);
 		mainFrame.getContentPane().add(gamePanel);
@@ -65,9 +93,30 @@ public class MonopolyBoard {
 		gamePanel.add(controlPanel);
 		controlPanel.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 13, 671, 394);
-		controlPanel.add(panel);
+		playersPanel = new JPanel();
+		playersPanel.setBounds(12, 13, 671, 394);
+		controlPanel.add(playersPanel);
+		playersPanel.setBackground(Color.DARK_GRAY);
+		playersPanel.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		cardInfoLabel = new JLabel();
+		cardInfoLabel.setBounds(27, 654, 250, 279);
+		controlPanel.add(cardInfoLabel);
+		grid.createAndSetLabelSizedIcon(cardInfoLabel, MonopolyBoard.class.getResource("/resource/placeholder.png"));
+		
+		JPanel rollPanel = new JPanel();
+		rollPanel.setBounds(12, 443, 304, 186);
+		controlPanel.add(rollPanel);
+		
+		JPanel actionsPanel = new JPanel();
+		actionsPanel.setBounds(377, 443, 306, 186);
+		controlPanel.add(actionsPanel);
+		
+		JPanel buildingsPanel = new JPanel();
+		buildingsPanel.setBounds(377, 674, 306, 259);
+		controlPanel.add(buildingsPanel);
+		
+		
 
 	}
 }

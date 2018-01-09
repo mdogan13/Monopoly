@@ -39,9 +39,13 @@ public class GameSetupScreen extends JDialog {
 	private JTextField p3nameField;
 	private JTextField p4nameField;
 
+	@SuppressWarnings("rawtypes")
 	JComboBox p1tokenBox;
+	@SuppressWarnings("rawtypes")
 	JComboBox p2tokenBox;
+	@SuppressWarnings("rawtypes")
 	JComboBox p3tokenBox;
+	@SuppressWarnings("rawtypes")
 	JComboBox p4tokenBox;
 
 	JButton okButton;
@@ -59,6 +63,7 @@ public class GameSetupScreen extends JDialog {
 	ImageIcon[] tokenSelections = new ImageIcon[4];
 
  
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public GameSetupScreen() {
 		setTitle("Game Setup");
 		setBounds(100, 100, 582, 315);
@@ -177,25 +182,25 @@ public class GameSetupScreen extends JDialog {
 				// creates the board and the controller
 
 				if (playerNumCombobox.getSelectedIndex() == 0) {
-					JOptionPane.showMessageDialog(null, "Select the number of players first!", " title",
+					JOptionPane.showMessageDialog(null, "Select the number of players first!", "Message",
 							JOptionPane.WARNING_MESSAGE);
 
 				} else if (p1nameField.getText().trim().isEmpty() || p2nameField.getText().trim().isEmpty()
 						|| p1tokenBox.getSelectedIndex() == 0 || p2tokenBox.getSelectedIndex() == 0) {
-					JOptionPane.showMessageDialog(null, "You have to fill all fields!", " title",
+					JOptionPane.showMessageDialog(null, "You have to fill all fields!", "Message",
 							JOptionPane.WARNING_MESSAGE);
 				} else if (numberOfPlayers == 3
 						&& (p1nameField.getText().trim().isEmpty() || p2nameField.getText().trim().isEmpty()
 								|| p3nameField.getText().trim().isEmpty() || p1tokenBox.getSelectedIndex() == 0
 								|| p2tokenBox.getSelectedIndex() == 0 || p3tokenBox.getSelectedIndex() == 0)) {
-					JOptionPane.showMessageDialog(null, "You have to fill all fields!", " title",
+					JOptionPane.showMessageDialog(null, "You have to fill all fields!", "Message",
 							JOptionPane.WARNING_MESSAGE);
 				} else if (numberOfPlayers == 4
 						&& (p1nameField.getText().trim().isEmpty() || p2nameField.getText().trim().isEmpty()
 								|| p3nameField.getText().trim().isEmpty() || p4nameField.getText().trim().isEmpty()
 								|| p1tokenBox.getSelectedIndex() == 0 || p2tokenBox.getSelectedIndex() == 0
 								|| p3tokenBox.getSelectedIndex() == 0 || p4tokenBox.getSelectedIndex() == 0)) {
-					JOptionPane.showMessageDialog(null, "You have to fill all fields!", " title",
+					JOptionPane.showMessageDialog(null, "You have to fill all fields!", "Message",
 							JOptionPane.WARNING_MESSAGE);
 				} else {
 					if (numberOfPlayers == 2) {
@@ -213,7 +218,7 @@ public class GameSetupScreen extends JDialog {
 					}
 
 					new GameController(playerNumCombobox.getSelectedIndex() + 1, playerNames);
-					new MonopolyBoard(tokenSelections);
+					new MonopolyBoard(tokenSelections,playerNames);
 					setVisible(false);
 				}
 
@@ -232,6 +237,7 @@ public class GameSetupScreen extends JDialog {
 		});
 	}
  
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		player1Panel = new JPanel();
 		player1Panel.setBounds(31, 97, 504, 22);
