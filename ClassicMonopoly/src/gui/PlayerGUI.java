@@ -2,14 +2,10 @@ package gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.print.DocFlavor.URL;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.GridLayout;
+import javax.swing.JButton;
+import java.awt.Font;
 
 
 
@@ -37,7 +39,6 @@ public class MonopolyBoard {
 				path = new URL(tokenSelections[i].getDescription());
 				grid.createAndSetLabelSizedIcon(g.playerIconlbl, path);
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -107,6 +108,22 @@ public class MonopolyBoard {
 		JPanel rollPanel = new JPanel();
 		rollPanel.setBounds(12, 443, 304, 186);
 		controlPanel.add(rollPanel);
+		rollPanel.setLayout(null);
+		
+		JButton rollButton = new JButton("Roll");
+		rollButton.setFont(new Font("KabinLightDB", Font.PLAIN, 24));
+		rollButton.setBounds(79, 112, 139, 48);
+		rollPanel.add(rollButton);
+		
+		JLabel turnLabel = new JLabel("Player X's Turn");
+		turnLabel.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		turnLabel.setBounds(12, 29, 139, 28);
+		rollPanel.add(turnLabel);
+		
+		JLabel diceValLabel = new JLabel("Dice Values:");
+		diceValLabel.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		diceValLabel.setBounds(12, 71, 249, 28);
+		rollPanel.add(diceValLabel);
 		
 		JPanel actionsPanel = new JPanel();
 		actionsPanel.setBounds(377, 443, 306, 186);

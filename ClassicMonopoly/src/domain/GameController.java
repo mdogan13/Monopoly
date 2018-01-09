@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GameController {
 	
 
-	ArrayList<Player> playerList=new ArrayList<Player>();
+	static ArrayList<Player> playerList=new ArrayList<Player>();
 	
 
 	
