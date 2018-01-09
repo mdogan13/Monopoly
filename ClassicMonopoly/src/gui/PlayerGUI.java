@@ -11,11 +11,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.swing.border.LineBorder;
 
-import org.omg.CORBA.portable.InputStream;
+
 
 import java.awt.Color;
 
@@ -47,9 +48,15 @@ public class PlayerGUI extends JPanel {
 		this.playerBalancelbl.setText("3200");
 		
 	 
-			     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-				    ge.registerFont(new Font("KabinLightDB.ttf",Font.PLAIN,22));
-
+		GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		 InputStream is=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB.ttf");
+		 try {
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 
 	}
