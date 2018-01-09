@@ -22,7 +22,7 @@ import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class PlayerGUI extends JPanel {
-
+//
 	JLabel playerNamelbl;
 	JLabel playerBalancelbl;
 	JLabel playerIconlbl;
