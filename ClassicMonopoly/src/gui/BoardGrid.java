@@ -652,4 +652,12 @@ public class BoardGrid extends JPanel {
 		ImageIcon scaledicon = new ImageIcon(smallpic);
 		container.setIcon(scaledicon);
 	}
+	
+	public void moveOnGrid(PlayerToken t, int moveVal) {
+		squarePanels[t.getGridPosition()].remove(t.tokenContainer);
+		squarePanels[t.getGridPosition()].repaint();
+		t.setGridPosition((t.getGridPosition()+moveVal)%squarePanels.length);
+		squarePanels[t.getGridPosition()].add(t.tokenContainer);
+		squarePanels[t.getGridPosition()].repaint();
+	}
 }

@@ -46,8 +46,10 @@ public class PlayerGUI extends JPanel {
 	 
 		GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
 		 InputStream is=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB.ttf");
+		 InputStream is2=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB_Normal.ttf");
 		 try {
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is2));
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -64,47 +66,47 @@ public class PlayerGUI extends JPanel {
 		setLayout(null);
 		
 		JLabel lblPlayer = new JLabel("Player:");
-		lblPlayer.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		lblPlayer.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		lblPlayer.setBounds(12, 13, 56, 25);
 		add(lblPlayer);
 		
 		JLabel lblBalance = new JLabel("Balance:");
-		lblBalance.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		lblBalance.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		lblBalance.setBounds(12, 51, 90, 25);
 		add(lblBalance);
 		
 		JLabel lblTitleDeeds = new JLabel("Title Deeds:");
-		lblTitleDeeds.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		lblTitleDeeds.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		lblTitleDeeds.setBounds(12, 87, 90, 25);
 		add(lblTitleDeeds);
 		
 		JLabel lblRailroads = new JLabel("Railroads:");
-		lblRailroads.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		lblRailroads.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		lblRailroads.setBounds(12, 125, 90, 25);
 		add(lblRailroads);
 		
 		JLabel lblUtilities = new JLabel("Utilities:");
-		lblUtilities.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		lblUtilities.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		lblUtilities.setBounds(12, 162, 90, 25);
 		add(lblUtilities);
 		
 		titleDeedsCbox = new JComboBox(titleDeedList.toArray());
-		titleDeedsCbox.setFont(new Font("Nirmala UI Semilight", Font.PLAIN, 18));
+		titleDeedsCbox.setFont(new Font("KabinLightDB", Font.PLAIN, 18));
 		titleDeedsCbox.setBounds(147, 87, 176, 25);
 		add(titleDeedsCbox);
 		
 		railroadsCbox = new JComboBox(railroadList.toArray());
-		railroadsCbox.setFont(new Font("Nirmala UI Semilight", Font.PLAIN, 18));
+		railroadsCbox.setFont(new Font("KabinLightDB", Font.PLAIN, 18));
 		railroadsCbox.setBounds(147, 125, 176, 25);
 		add(railroadsCbox);
 		
 		utilitiesCbox = new JComboBox(utilityList.toArray());
-		utilitiesCbox.setFont(new Font("Nirmala UI Semilight", Font.PLAIN, 18));
+		utilitiesCbox.setFont(new Font("KabinLightDB", Font.PLAIN, 18));
 		utilitiesCbox.setBounds(147, 162, 176, 25);
 		add(utilitiesCbox);
 		
 		playerNamelbl = new JLabel("<name>");
-		playerNamelbl.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		playerNamelbl.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		playerNamelbl.setBounds(213, 13, 110, 25);
 		add(playerNamelbl);
 		
@@ -113,7 +115,7 @@ public class PlayerGUI extends JPanel {
 		add(playerIconlbl);
 		
 		playerBalancelbl = new JLabel("<balance>");
-		playerBalancelbl.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		playerBalancelbl.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		playerBalancelbl.setBounds(147, 51, 110, 25);
 		add(playerBalancelbl);
 	}

@@ -11,6 +11,7 @@ public class PlayerToken {
 	int gridPosition;
 	
 	public PlayerToken(ImageIcon icon) {
+		this.gridPosition=0;
 		
 		tokenContainer.setBounds(0,0,40,17);
 		ImageIcon originalicon = icon;
@@ -19,5 +20,13 @@ public class PlayerToken {
 		ImageIcon scaledicon = new ImageIcon(smallpic);
 		tokenContainer.setIcon(scaledicon);
 		
+	}
+
+	public int getGridPosition() {
+		return gridPosition;
+	}
+
+	public void setGridPosition(int gridPosition) {
+		this.gridPosition = gridPosition;
 	}
 }

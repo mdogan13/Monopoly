@@ -13,21 +13,42 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import java.awt.ScrollPane;
+import java.awt.TextField;
+import javax.swing.SwingConstants;
+import javax.swing.DropMode;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 
 
 public class MonopolyBoard {
 
 	private JFrame mainFrame;
-	private BoardGrid grid;
+	static BoardGrid grid;
+	GUIController guicontroller;
 	
 	JPanel gamePanel;
 	JPanel controlPanel;
 	JPanel playersPanel;
 	
+	static JButton rollButton;
+	static JLabel diceValLabel;
+	static JLabel turnLabel; 
+	
+	static JButton btnEndTurn;
+	
 	static JLabel cardInfoLabel ;
 	
-	//tokenlist here!
+
+	static ArrayList<PlayerToken> tokenList=new ArrayList<PlayerToken>();
+	private JButton btnUnmortgage;
+	private JLabel gameLogTitleLabel;
+	
 	
 	public MonopolyBoard(ImageIcon[] tokenSelections, ArrayList<String> playerNames) {
 		initialize();
@@ -45,10 +66,13 @@ public class MonopolyBoard {
 			playersPanel.add(g);
 			
 			PlayerToken t= new PlayerToken(tokenSelections[i]);
+			tokenList.add(t);
 			t.gridPosition=0;
 			grid.squarePanels[0].add(t.tokenContainer);
 			
 		}
+		
+		guicontroller=new GUIController();
 	
 		
 	
@@ -101,37 +125,99 @@ public class MonopolyBoard {
 		playersPanel.setLayout(new GridLayout(2, 2, 0, 0));
 		
 		cardInfoLabel = new JLabel();
-		cardInfoLabel.setBounds(27, 654, 250, 279);
+		cardInfoLabel.setBounds(45, 640, 250, 279);
 		controlPanel.add(cardInfoLabel);
 		grid.createAndSetLabelSizedIcon(cardInfoLabel, MonopolyBoard.class.getResource("/resource/placeholder.png"));
 		
 		JPanel rollPanel = new JPanel();
-		rollPanel.setBounds(12, 443, 304, 186);
+		rollPanel.setBounds(12, 420, 306, 186);
 		controlPanel.add(rollPanel);
 		rollPanel.setLayout(null);
 		
-		JButton rollButton = new JButton("Roll");
-		rollButton.setFont(new Font("KabinLightDB", Font.PLAIN, 24));
-		rollButton.setBounds(79, 112, 139, 48);
+		rollButton = new JButton("Roll");
+		rollButton.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		rollButton.setBounds(78, 129, 139, 48);
 		rollPanel.add(rollButton);
 		
-		JLabel turnLabel = new JLabel("Player X's Turn");
-		turnLabel.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		turnLabel = new JLabel("Player X's Turn");
+		turnLabel.setFont(new Font("KabinLightDB", Font.BOLD, 22));
 		turnLabel.setBounds(12, 29, 139, 28);
 		rollPanel.add(turnLabel);
 		
-		JLabel diceValLabel = new JLabel("Dice Values:");
-		diceValLabel.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
-		diceValLabel.setBounds(12, 71, 249, 28);
+		diceValLabel = new JLabel("Dice Values:");
+		diceValLabel.setFont(new Font("KabinLightDB", Font.BOLD, 22));
+		diceValLabel.setBounds(12, 75, 249, 28);
 		rollPanel.add(diceValLabel);
 		
 		JPanel actionsPanel = new JPanel();
-		actionsPanel.setBounds(377, 443, 306, 186);
+		actionsPanel.setBounds(349, 420, 334, 186);
 		controlPanel.add(actionsPanel);
+		actionsPanel.setLayout(null);
 		
-		JPanel buildingsPanel = new JPanel();
-		buildingsPanel.setBounds(377, 674, 306, 259);
-		controlPanel.add(buildingsPanel);
+		btnEndTurn = new JButton("End Turn");
+		MonopolyBoard.btnEndTurn.setEnabled(false);
+		btnEndTurn.setBounds(171, 132, 151, 41);
+		btnEndTurn.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		actionsPanel.add(btnEndTurn);
+		
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.setEnabled(false);
+		btnBuy.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		btnBuy.setBounds(12, 13, 151, 41);
+		actionsPanel.add(btnBuy);
+		
+		JButton btnSell = new JButton("Sell...");
+		btnSell.setEnabled(false);
+		btnSell.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		btnSell.setBounds(171, 13, 151, 41);
+		actionsPanel.add(btnSell);
+		
+		JButton btnBuild = new JButton("Build...");
+		btnBuild.setEnabled(false);
+		btnBuild.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		btnBuild.setBounds(12, 132, 151, 41);
+		actionsPanel.add(btnBuild);
+		
+		JButton btnMortgage = new JButton("Mortgage...");
+		btnMortgage.setEnabled(false);
+		btnMortgage.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		btnMortgage.setBounds(12, 73, 151, 41);
+		actionsPanel.add(btnMortgage);
+		
+		btnUnmortgage = new JButton("Unmortgage...");
+		btnUnmortgage.setFont(new Font("KabinLightDB", Font.BOLD, 24));
+		btnUnmortgage.setEnabled(false);
+		btnUnmortgage.setBounds(171, 73, 151, 41);
+		actionsPanel.add(btnUnmortgage);
+		
+		JPanel gameLogPanel = new JPanel();
+		gameLogPanel.setBounds(349, 619, 334, 314);
+		controlPanel.add(gameLogPanel);
+		gameLogPanel.setLayout(null);
+		
+		gameLogTitleLabel = new JLabel("Game Log");
+		gameLogTitleLabel.setFont(new Font("KabinLightDB", Font.BOLD, 22));
+		gameLogTitleLabel.setBounds(12, 13, 139, 28);
+		gameLogPanel.add(gameLogTitleLabel);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
+		textArea.setLineWrap(true);
+		textArea.append("The game has started. \n");
+		textArea.append("sec");
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(12, 47, 312, 257);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		gameLogPanel.add(scrollPane);
+		
+	
+		
+
+		
+
 		
 		
 
