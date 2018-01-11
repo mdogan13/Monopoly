@@ -1,7 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
- 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,6 +69,20 @@ public class GameSetupScreen extends JDialog {
  
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public GameSetupScreen() {
+		//register fonts
+		GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		 InputStream is=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB.ttf");
+		 InputStream is2=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB_Normal.ttf");
+		 try {
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is2));
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
 		setTitle("Game Setup");
 		setBounds(100, 100, 582, 315);
 		setLocationRelativeTo(null);

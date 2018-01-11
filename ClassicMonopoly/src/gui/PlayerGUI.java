@@ -44,18 +44,7 @@ public class PlayerGUI extends JPanel {
 		this.playerBalancelbl.setText("3200");
 		
 	 
-		GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
-		 InputStream is=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB.ttf");
-		 InputStream is2=PlayerGUI.class.getResourceAsStream("/resource/KabinLightDB_Normal.ttf");
-		 try {
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is2));
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	
 
 	}
 
