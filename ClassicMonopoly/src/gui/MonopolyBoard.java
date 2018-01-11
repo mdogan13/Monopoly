@@ -37,7 +37,8 @@ public class MonopolyBoard {
 	JPanel playersPanel;
 	
 	static JButton rollButton;
-	static JLabel diceValLabel;
+	static JLabel die1Label;
+	static JLabel die2Label;
 	static JLabel turnLabel; 
 	
 	static JButton btnEndTurn;
@@ -141,13 +142,16 @@ public class MonopolyBoard {
 		
 		turnLabel = new JLabel("Player X's Turn");
 		turnLabel.setFont(new Font("KabinLightDB", Font.BOLD, 22));
-		turnLabel.setBounds(12, 29, 139, 28);
+		turnLabel.setBounds(12, 13, 139, 28);
 		rollPanel.add(turnLabel);
 		
-		diceValLabel = new JLabel("Dice Values:");
-		diceValLabel.setFont(new Font("KabinLightDB", Font.BOLD, 22));
-		diceValLabel.setBounds(12, 75, 249, 28);
-		rollPanel.add(diceValLabel);
+		die1Label = new JLabel("die1");
+		die1Label.setBounds(78, 56, 60, 60);
+		rollPanel.add(die1Label);
+		
+		die2Label = new JLabel("die2");
+		die2Label.setBounds(157, 56, 60, 60);
+		rollPanel.add(die2Label);
 		
 		JPanel actionsPanel = new JPanel();
 		actionsPanel.setBounds(349, 420, 334, 186);
@@ -205,7 +209,6 @@ public class MonopolyBoard {
 		textArea.setFont(new Font("KabinLightDB", Font.PLAIN, 22));
 		textArea.setLineWrap(true);
 		textArea.append("The game has started. \n");
-		textArea.append("sec");
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(12, 47, 312, 257);
