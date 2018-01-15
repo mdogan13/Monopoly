@@ -41,7 +41,7 @@ public class PlayerGUI extends JPanel {
 		utilityList=new ArrayList<String>();
 		initialize();
 		this.playerNamelbl.setText(playerName);
-		this.playerBalancelbl.setText("3200");
+		this.playerBalancelbl.setText("1500");
 		
 	 
 	

@@ -90,6 +90,7 @@ public class GameSetupScreen extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		JLabel playerNumLabel = new JLabel("How many players?");
 		playerNumLabel.setBounds(135, 35, 155, 16);
@@ -249,7 +250,8 @@ public class GameSetupScreen extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//return to main menu
-				
+				//for now, it exits
+				System.exit(0);
 			}
 			
 		});

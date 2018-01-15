@@ -30,6 +30,8 @@ public class GUIController {
 	ImageIcon die6Icon = createLabelSizedIcon(MonopolyBoard.die1Label,
 			GUIController.class.getResource("/resource/diefaces/die6.png"));
 	ImageIcon[] icons = new ImageIcon[6];
+	
+	
 
 	public GUIController() {
 		icons[0] = die1Icon;
@@ -49,15 +51,45 @@ public class GUIController {
 			public void actionPerformed(ActionEvent arg0) {
 
 				MonopolyBoard.rollButton.setEnabled(false);// this will change if double rolled
-				int tokenIndexToMove = GameController.playerList.indexOf(GameController.currentPlayer);
-				int[] dieVals = GameController.rollDice(GameController.die1, GameController.die2);
-				
-			//	playRollAnimation(); 
 
-				MonopolyBoard.die1Label.setIcon(icons[dieVals[0] - 1]);
-				MonopolyBoard.die2Label.setIcon(icons[dieVals[1] - 1]);
-				MonopolyBoard.grid.moveOnGrid(MonopolyBoard.tokenList.get(tokenIndexToMove), dieVals[2]);
-				MonopolyBoard.btnEndTurn.setEnabled(true);
+				int tokenIndexToMove = GameController.playerList.indexOf(GameController.currentPlayer);
+				GameController.setDieVals(GameController.rollDice(GameController.die1, GameController.die2));
+
+				playRollAnimation();
+				
+				Timer diceValTimer = new Timer();
+
+				Timer moveTokenTimer = new Timer();
+
+				TimerTask diceValDelay = new TimerTask() {
+
+					@Override
+					public void run() {
+						MonopolyBoard.die1Label.setIcon(icons[GameController.getDieVals()[0] - 1]);
+						MonopolyBoard.die2Label.setIcon(icons[GameController.getDieVals()[1] - 1]);
+						diceValTimer.cancel();
+						diceValTimer.purge();
+
+					}
+				};
+
+				TimerTask moveTokenlDelay = new TimerTask() {
+
+					@Override
+					public void run() {
+						MonopolyBoard.btnEndTurn.setEnabled(true);
+						MonopolyBoard.grid.moveOnGrid(MonopolyBoard.tokenList.get(tokenIndexToMove), GameController.getDieVals()[2]);
+						
+						//move on domain board here
+						diceValTimer.cancel();
+						diceValTimer.purge();
+
+					}
+				};
+
+				diceValTimer.schedule(diceValDelay, 700);
+				moveTokenTimer.schedule(moveTokenlDelay, 1500);
+
 			}
 
 		});
@@ -82,23 +114,24 @@ public class GUIController {
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask() {
-			int secondsToWait = 10;
+			int numOfIterations = 5;
 			int selectIndex = rand.nextInt(6);
 
 			@Override
 			public void run() {
-				secondsToWait--;
+				numOfIterations--;
 				MonopolyBoard.die1Label.setIcon(icons[selectIndex]);
 				selectIndex = rand.nextInt(6);
 				MonopolyBoard.die2Label.setIcon(icons[selectIndex]);
-				if (secondsToWait == 0) {
+				if (numOfIterations == 0) {
 					timer.cancel();
 					timer.purge();
+
 				}
 			}
 		};
 
-		timer.scheduleAtFixedRate(task, 0, 50);
+		timer.scheduleAtFixedRate(task, 0, 100);
 	}
 
 	private ImageIcon createLabelSizedIcon(JLabel container, URL imgLocation) {
